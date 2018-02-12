@@ -4,8 +4,14 @@
 0. delete all apps and services and routes
 0. make sure all the step below wor
 0. For a group walkthrough, set up an empty Windows box, then:
-* Install chocolatey
-* Install mysql client
+* Install chocolatey, per https://chocolatey.org/install
+* Install stuff:
+   ```
+   choco install firefox
+   choco install git /GitAndUnixToolsOnPath /NoAutoCrlf
+   choco install cloudfoundry-cli 
+   choco install mysql-cli
+   ```
 
 # Demo
 
@@ -50,7 +56,10 @@ cf bind-service cf-spring cf-spring-db
 * View the logs, command line and w/ Kibana
 * Connect to app with SSH
 * Connect to DB with `connect-to-service`
+  ```
+  cf install-plugin https://github.com/18F/cf-service-connect/releases/download/1.1.0/cf-service-connect.win64
+  ```
 * View other available services
 * Visit the dashboard 
-
+`
 # Clean up
