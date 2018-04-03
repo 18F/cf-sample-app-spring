@@ -39,16 +39,34 @@ cat<<END
 API endpoint: https://api.fr.cloud.gov
 
 One Time Code ( Get one at https://login.fr.cloud.gov/passcode )>
-Authenticating...
-OK
+^C
 END
 
 pe "cf target -o demo-usda -s dev"
 
+echo
 echo "view https://github.com/18F/cg-workshop/raw/master/images/app_push_flow_diagram_diego.png"
+echo
 
-# pe "cf push"
+pe "cf push"
+
+pe "cf marketplace"
+pe "cf marketplace -s aws-rds"
+pe "cf create-service aws-rds shared-mysql cf-spring-db"
+pe "cf bind-service cf-spring cf-spring-db"
+
+echo
+echo "while restaging, view https://logs.fr.cloud.gov"
+echo
+
+pe "cf restage cf-spring"
+pe "cf app cf-spring"
+pe "cf scale -i 2 cf-spring"
+pe "cf app cf-spring"
+pe "cf ssh cf-spring"
 
 # show a prompt so as not to reveal our true nature after
 # the demo has concluded
+echo 
+echo "If you're done, run ./demo-cleanup.sh"
 p ""
