@@ -25,6 +25,14 @@ DEMO_PROMPT="${GREEN}➜ ${CYAN}\W "
 # hide the evidence
 clear
 
+
+if cf target | grep -q 'user.*peter.burkholder@cao.gov'; then
+  echo "OK"
+else
+  echo "need to login as peter.burkholder@cao.gov"
+  exit 1
+fi
+
 # put your demo awesomeness here
 pe "cf help"
 

@@ -32,16 +32,5 @@ else
   exit 1
 fi
 
-
 pe "neworg=demo-usda"
-pe "user=peter.burkholder"
-pe "cf create-org $neworg -q default"
-pe "cf set-org-role $user@connect.gov $neworg OrgManager"
-
-pe "cf create-space -o $neworg dev"
-pe "cf create-space -o $neworg stage"
-pe "cf create-space -o $neworg preprod"
-
-echo 
-printf "Now login to \e[38;5;81mhttps://dashboard.fr.cloud.gov\e[0m as $user@connect.gov and invite $user@cao.gov\n"
-echo 
+pe "cf delete-org $neworg"
